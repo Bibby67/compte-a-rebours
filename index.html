@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à rebours</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        h1 { font-size: 50px; }
+        .countdown { font-size: 30px; color: red; }
+    </style>
+</head>
+<body>
+    <h1>Compte à Rebours</h1>
+    <p id="countdown" class="countdown"></p>
+
+    <script>
+        // Date de l'événement (par exemple, 25 mars 2025)
+        var eventDate = new Date("May 08, 2025 07:00:00").getTime();
+
+        var countdownFunction = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = eventDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = days + "j " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "L'événement a commencé !";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
